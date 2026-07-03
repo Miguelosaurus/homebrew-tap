@@ -1,8 +1,8 @@
 class SwiftSim < Formula
   desc "Install iOS builds from Codex and preview a Mac Simulator remotely"
   homepage "https://github.com/Miguelosaurus/Swift-Sim"
-  url "https://github.com/Miguelosaurus/Swift-Sim/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "1ca053de5971388d403ec46a3bfa5d5e46889b2338cb3b4c003a9194e7c86145"
+  url "https://github.com/Miguelosaurus/Swift-Sim/archive/refs/tags/v0.2.1.tar.gz"
+  sha256 "c249bfdb8bf99c08bc3f49f5126255263a2b387966143f986cdd3c5da2d662f3"
   license "Apache-2.0"
 
   depends_on "cloudflared"
