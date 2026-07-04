@@ -1,8 +1,8 @@
 class SwiftSim < Formula
   desc "Install iOS builds from mobile-controlled coding agents"
   homepage "https://github.com/Miguelosaurus/Swift-Sim"
-  url "https://github.com/Miguelosaurus/Swift-Sim/archive/refs/tags/v0.2.2.tar.gz"
-  sha256 "69a33e79c898daa92f977f1772ea6f71f534dd57f50d05bb461c15b7b72ab4ed"
+  url "https://github.com/Miguelosaurus/Swift-Sim/archive/refs/tags/v0.2.3.tar.gz"
+  sha256 "d757fa2b43e88fa785636299e3a5935eaf5637ee9d0f0eeb4311e73058397902"
   license "Apache-2.0"
 
   depends_on "cloudflared"
