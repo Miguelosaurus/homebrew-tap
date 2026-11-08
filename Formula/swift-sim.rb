@@ -1,27 +1,31 @@
 class SwiftSim < Formula
   desc "Install iOS builds from mobile-controlled coding agents"
   homepage "https://github.com/Miguelosaurus/Swift-Sim"
-  url "https://github.com/Miguelosaurus/Swift-Sim/releases/download/v0.5.0/swift-sim-0.5.0.tar.gz"
-  sha256 "18eaa07cd9bbe17faf9128bd77cf5e0ef630df35c30ab2c2002a6fdcc10cdbdc"
+  url "https://github.com/Miguelosaurus/Swift-Sim/releases/download/v0.6.2/swift-sim-0.6.2.tar.gz"
+  sha256 "af8e8b21456e35b0a6690f155b7771da1a00f0c19adfb43cfb45174833e82fcc"
   license "Apache-2.0"
 
   depends_on "cloudflared"
-  depends_on "node@22"
+  depends_on "node@24"
 
   def install
     libexec.install Dir["*"]
     libexec.install ".agents", ".claude-plugin", ".cursor-plugin"
 
     cd libexec do
-      system Formula["node@22"].opt_bin/"npm", "install", "--omit=dev", "--ignore-scripts"
+      system Formula["node@24"].opt_bin/"npm", "install", "--omit=dev", "--ignore-scripts"
     end
 
-    write_launcher "swift-sim", "mac-helper/bin/swift-sim.js"
-    write_launcher "swift-sim-helper", "mac-helper/bin/swift-sim-helper.js"
+    write_launcher "swift-sim", "dist/mac-helper/bin/swift-sim-entry.js"
+    write_launcher "swift-sim-helper", "dist/mac-helper/bin/swift-sim-helper-entry.js"
+    write_launcher "swift-sim-phase4-cutover", "dist/mac-helper/bin/swift-sim-phase4-cutover.js"
   end
 
   service do
-    run [Formula["node@22"].opt_bin/"node", opt_libexec/"mac-helper/bin/swift-sim-helper.js", "serve"]
+    run ["/usr/bin/env", "SWIFT_SIM_PORT=47217", Formula["node@24"].opt_bin/"node", opt_libexec/"dist/mac-helper/bin/swift-sim-helper-entry.js", "serve"]
+    environment_variables(
+      HOME: ENV.fetch("SWIFT_SIM_SERVICE_HOME", Dir.home),
+    )
     keep_alive true
     log_path var/"log/swift-sim.log"
     error_log_path var/"log/swift-sim.log"
@@ -36,9 +40,8 @@ class SwiftSim < Formula
   def write_launcher(name, script)
     (bin/name).write <<~SH
       #!/bin/bash
-      export PATH="#{Formula["node@22"].opt_bin}:#{Formula["cloudflared"].opt_bin}:$PATH"
-      export SWIFT_SIM_MARKETPLACE_ROOT="#{opt_libexec}"
-      exec "#{Formula["node@22"].opt_bin}/node" "#{libexec}/#{script}" "$@"
+      export PATH="#{Formula["node@24"].opt_bin}:#{Formula["cloudflared"].opt_bin}:$PATH"
+      exec "#{Formula["node@24"].opt_bin}/node" "#{libexec}/#{script}" "$@"
     SH
   end
 end
