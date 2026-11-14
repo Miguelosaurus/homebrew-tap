@@ -1,8 +1,8 @@
 class SwiftSim < Formula
   desc "Build and test iPhone apps from a Mac-hosted coding agent"
   homepage "https://github.com/Miguelosaurus/Swift-Sim"
-  url "https://github.com/Miguelosaurus/Swift-Sim/releases/download/v0.6.5/swift-sim-0.6.5.tar.gz"
-  sha256 "f1eb21fd7a1ae2183aaa0d935b610c100ed4df95675e65efe437270a8ce9e25e"
+  url "https://github.com/Miguelosaurus/Swift-Sim/releases/download/v0.6.6/swift-sim-0.6.6.tar.gz"
+  sha256 "cbf016fab642dca6658532dc8fea23eaa98cf7cb1aa80d75e723d2f5c49bc9a9"
   license "Apache-2.0"
 
   depends_on "cloudflared"
