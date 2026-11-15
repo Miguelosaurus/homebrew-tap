@@ -1,8 +1,8 @@
 class SwiftSim < Formula
   desc "Build and test iPhone apps from a Mac-hosted coding agent"
   homepage "https://github.com/Miguelosaurus/Swift-Sim"
-  url "https://github.com/Miguelosaurus/Swift-Sim/releases/download/v0.6.6/swift-sim-0.6.6.tar.gz"
-  sha256 "cbf016fab642dca6658532dc8fea23eaa98cf7cb1aa80d75e723d2f5c49bc9a9"
+  url "https://github.com/Miguelosaurus/Swift-Sim/releases/download/v0.6.7/swift-sim-0.6.7.tar.gz"
+  sha256 "70fe8ce6b1f3b1224d7d2c50c7979fd654d909f7416414a9149f26355ef8b0c4"
   license "Apache-2.0"
 
   depends_on "cloudflared"
@@ -18,7 +18,6 @@ class SwiftSim < Formula
 
     write_launcher "swift-sim", "dist/mac-helper/bin/swift-sim-entry.js"
     write_launcher "swift-sim-helper", "dist/mac-helper/bin/swift-sim-helper-entry.js"
-    write_launcher "swift-sim-phase4-cutover", "dist/mac-helper/bin/swift-sim-phase4-cutover.js"
   end
 
   service do
